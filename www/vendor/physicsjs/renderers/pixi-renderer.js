@@ -75,9 +75,9 @@
             // Provide some default colours
             styles: {
                 // Defines the default canvas colour
-                'color': '0x66FF99',
+                'color': '0xFFFFFF',
     
-                'point' : '0xE8900C',
+                'point' : '0x000000',
     
                 'circle' : {
                     strokeStyle: '0xE8900C',
