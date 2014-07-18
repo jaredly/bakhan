@@ -24,21 +24,6 @@ canvas {
     text-decoration: none;
 }
 
-.gateclock {
-    display: inline-block;
-    background-color: white;
-    border: 1px solid #eee;
-    padding: 5px;
-    margin: 5px;
-}
-
-.gateclock span {
-    font-family: monospace;
-    text-align: center;
-    font-weight: bold;
-    display: block;
-}
-
 .graph {
     position: absolute !important;
     top: 0;
