@@ -128,6 +128,7 @@
     
                 // init events
                 var grab = function grab( e ){
+                    e.preventDefault()
                     var pos = getCoords( e )
                         ,body
                         ;
@@ -138,6 +139,9 @@
                         if ( body ){
                             // we're trying to grab a body
     
+                            if (body.treatment === 'static') {
+                                return
+                            }
                             // fix the body in place
                             prevTreatment = body.treatment;
                             body.treatment = 'kinematic';
@@ -209,8 +213,8 @@
                 this.el.addEventListener('mousemove', move);
                 this.el.addEventListener('touchmove', move);
     
-                this.el.addEventListener('mouseup', release);
-                this.el.addEventListener('touchend', release);
+                window.addEventListener('mouseup', release);
+                window.addEventListener('touchend', release);
             },
     
             // extended
