@@ -4,3 +4,22 @@ canvas {
     position: static !important;
 }
 
+.stopwatch {
+    display: inline-block;
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 5px;
+    margin: 5px;
+}
+
+.stopwatch span {
+    font-family: monospace;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+}
+
+.stopwatch a {
+    padding-right: 5px;
+    text-decoration: none;
+}
