@@ -222,7 +222,6 @@
              * Create a circle for use in PIXI stage
              **/
             createCircle: function( x, y, r, style ){
-
                 var graphics = new PIXI.Graphics();
                 graphics.beginFill(style.fillStyle);
                 graphics.lineStyle(style.lineWidth + 2, style.strokeStyle);
@@ -263,7 +262,7 @@
                     }
                     ,graphics = new PIXI.Graphics()
                     ;
-    
+
                 graphics.beginFill(styles.fillStyle);
                 graphics.lineStyle(styles.lineWidth, styles.strokeStyle);
     
