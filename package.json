@@ -1,0 +1,22 @@
+{
+  "name": "bakhan",
+  "version": "0.0.0",
+  "description": "Eat moer",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaredly/bakhan"
+  },
+  "author": "Bakhan team",
+  "license": "None yet",
+  "bugs": {
+    "url": "https://github.com/jaredly/bakhan/issues"
+  },
+  "homepage": "https://github.com/jaredly/bakhan",
+  "dependencies": {
+    "matter-js": "^0.8.0"
+  }
+}
