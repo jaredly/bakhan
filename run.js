@@ -2,9 +2,5 @@
 var bakhan = require('./lib')
   , node = document.getElementById('main-canvas')
 
-if (window.location.search.indexOf('orbit') > -1) {
-    window.BKA = new bakhan.Orbit(node, {width: 1400, height: 700});
-} else {
-    window.BKA = new bakhan.Demo(node, {width: 1400, height: 700});
-}
+window.BKA = new bakhan[window.location.search.slice(1)](node, {width: 1400, height: 700});
 window.BKA.run();
