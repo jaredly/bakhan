@@ -5,7 +5,7 @@ canvas {
 }
 
 .stopwatch {
-    display: inline-block;
+    display: block;
     background-color: white;
     border: 1px solid #eee;
     padding: 5px;
@@ -42,4 +42,14 @@ canvas {
     left: 10px;
     pointer-events: none;
     border: none;
+}
+
+.data-log {
+    display: inline-block;
+    overflow-y: scroll;
+    min-width: 100px;
+    height: 700px;
+    margin: 5px;
+    vertical-align: top;
+    border: 1px solid #eee;
 }
