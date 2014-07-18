@@ -38,3 +38,10 @@ canvas {
     font-weight: bold;
     display: block;
 }
+
+.graph {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
