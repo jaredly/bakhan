@@ -23,3 +23,18 @@ canvas {
     padding-right: 5px;
     text-decoration: none;
 }
+
+.gateclock {
+    display: inline-block;
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 5px;
+    margin: 5px;
+}
+
+.gateclock span {
+    font-family: monospace;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+}
