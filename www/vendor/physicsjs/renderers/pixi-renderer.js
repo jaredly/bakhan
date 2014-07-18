@@ -81,14 +81,21 @@
     
                 'circle' : {
                     strokeStyle: '0xE8900C',
-                    lineWidth: 3,
+                    lineWidth: 0,
+                    fillStyle: '0xD5DE4C',
+                    angleIndicator: '0xE8900C'
+                },
+
+                'rectangle' : {
+                    strokeStyle: '0xE8900C',
+                    lineWidth: 0,
                     fillStyle: '0xD5DE4C',
                     angleIndicator: '0xE8900C'
                 },
     
                 'convex-polygon' : {
                     strokeStyle: '0xE8900C',
-                    lineWidth: 3,
+                    lineWidth: 0,
                     fillStyle: '0xD5DE4C',
                     angleIndicator: '0xE8900C'
                 }
@@ -124,16 +131,16 @@
     
                 // Hook in PIXI stage here
                 this.stage = new PIXI.Stage(this.options.styles.color);
-                this.renderer = new PIXI.autoDetectRenderer(this.options.width, this.options.height);
+                this.renderer = new PIXI.autoDetectRenderer(this.options.width, this.options.height, null, false, true);
     
                 // Create empty meta object for use later
                 this.meta = {};
     
                 // add the renderer view element to the DOM according to its type
                 if ( this.el.nodeName === 'CANVAS' ){
-                    this.renderer = new PIXI.autoDetectRenderer(this.options.width, this.options.height, this.el);
+                    this.renderer = new PIXI.autoDetectRenderer(this.options.width, this.options.height, this.el, false, true);
                 } else {
-                    this.renderer = new PIXI.autoDetectRenderer(this.options.width, this.options.height);
+                    this.renderer = new PIXI.autoDetectRenderer(this.options.width, this.options.height, null, false, true);
     
                     if ( this.el !== null ) {
                         this.el.appendChild(this.renderer.view);
@@ -215,17 +222,27 @@
              * Create a circle for use in PIXI stage
              **/
             createCircle: function( x, y, r, style ){
-    
+
                 var graphics = new PIXI.Graphics();
                 graphics.beginFill(style.fillStyle);
-                graphics.lineStyle(style.lineWidth, style.strokeStyle);
-                graphics.drawCircle(x, y, r);
+                graphics.lineStyle(style.lineWidth + 2, style.strokeStyle);
+                graphics.drawCircle(x, y, r - 1);
                 // Center the graphics to the circle
                 graphics.pivot.x = (x / 2) + (r / 2);
                 graphics.pivot.y = (y / 2) + (r / 2);
                 return graphics;
             },
-    
+
+            createRect: function(x, y, width, height, styles){
+                var graphics = new PIXI.Graphics();
+                graphics.beginFill(styles.fillStyle);
+                graphics.lineStyle(styles.lineWidth, styles.strokeStyle);
+                graphics.drawRect(x, y, width, height);
+                graphics.pivot.x = (2*x + width) / 2
+                graphics.pivot.y = (2*y + height) / 2
+                return graphics;
+            },
+
             /**
              * PixiRenderer#createPolygon( verts, style ) -> PIXI.Graphics
              * - verts (Array): Array of [[Vectorish]] vertices
@@ -316,18 +333,18 @@
                 y += styles.lineWidth | 0;
     
                 if (name === 'circle'){
-    
                     view = this.createCircle(x, y, geometry.radius, styles);
-    
+                } else if (name === 'rectangle'){
+                    view = this.createRect(
+                            x, y, geometry.width, geometry.height, styles);
                 } else if (name === 'convex-polygon'){
-    
                     view = this.createPolygon(geometry.vertices, styles);
                 }
     
                 if (styles.angleIndicator){
     
                     view.beginFill(styles.angleIndicator);
-                    view.moveTo((x / 2), (5 + styles.lineWidth));
+                    view.moveTo((x / 2), (10 + styles.lineWidth));
                     view.lineTo((x / 2) + (geometry.radius / 2), geometry.radius);
                     // Center the graphics to the circle
                     view.endFill();
