@@ -85,7 +85,7 @@ var DropDataChecker = React.createClass({
                 || avgs["Bowling Ball"] < 800
                 || avgs["Bowling Ball"] > 1500
                 || avgs["Tennis Ball"] < 800
-                || avgs["Tennis Ball"] > 1500)
+                || avgs["Tennis Ball"] > 1500) {
             return "Those results are consistent, but they don't look quite right to me.  Make sure you're dropping the balls gently from the same height above the top sensor.";
         } else {
             return null;
