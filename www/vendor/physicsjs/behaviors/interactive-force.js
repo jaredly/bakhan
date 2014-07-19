@@ -146,6 +146,7 @@
                             // body.state.angular.vel = 0;
                             // remember the currently grabbed body
                             self.body = body;
+                            self.body.dragging = true
                             // remember the mouse offset
                             self.mousePos.clone( pos );
                             self.offset.clone( pos ).vsub( body.state.pos );
@@ -190,6 +191,7 @@
 
                     // release the body
                     if (self.body){
+                        self.body.dragging = false
                         // self.body.treatment = prevTreatment;
                         // calculate the release velocity
                         // self.body.state.vel.clone( self.mousePos ).vsub( self.mousePosOld ).mult( 1 / dt );
