@@ -2,6 +2,17 @@
 var bakhan = require('./lib')
   , node = document.getElementById('main-canvas')
 
-var name = window.location.search.slice(1).replace(/[^\w]/, '') || 'Demo'
-window.BKA = new bakhan[name](node, {width: 900, height: 700});
+var options = {
+    width: 900,
+    height: 700,
+}
+
+var name = window.location.search.replace(/&(\w+)=([^&]+)/g, function (res, key, val) {
+    options[key] = val.replace(/\//, '')
+    console.log([].slice.call(arguments))
+    return ''
+}).replace(/[^\w]/g, '') || 'Demo'
+console.log(name)
+
+window.BKA = new bakhan[name](node, options);
 window.BKA.run();

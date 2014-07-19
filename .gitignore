@@ -28,3 +28,4 @@ www/.bundle.js
 
 # Files used by editors
 .idea
+www/bundle.css
