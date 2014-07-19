@@ -25,20 +25,23 @@ var DropDataChecker = React.createClass({
             }
             return <div>
                 <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
-                <p><strong>Francis says:</strong> Okay, which result do they support?</p>
+                <img src="/images/sir-francis.jpeg" className="checker_francis"/>
+                <p>Okay, which result do they support?</p>
                 {bowlingButton}{tennisButton}{sameButton}
             </div>;
         } else if (this.state.thisResult) {
             return <div>
                 <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
-                <p><strong>Francis says:</strong> {this.state.thisResult}</p>
+                <img src="/images/sir-francis.jpeg" className="checker_francis"/>
+                <p>{this.state.thisResult}</p>
                 <button onClick={this.support}>The data support my hypothesis.</button>
                 <button onClick={this.disprove}>The data disprove my hypothesis.</button>
             </div>;
         } else {
             return <div>
                 <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
-                <p><strong>Francis says:</strong> Your experiment looks great, and I'm convinced.  Here, have some bacon.</p>
+                <img src="/images/sir-francis.jpeg" className="checker_francis"/>
+                <p>Your experiment looks great, and I'm convinced.  Here, have some bacon.</p>
             </div>;
         }
     },

@@ -45,7 +45,7 @@ module.exports = [
             },
             body: <div>
                 <p>What falls faster: a tennis ball or a bowling ball?</p>
-                <p><strong>Hypothesis:</strong> What you think will happen.</p>
+                <p>A <span className="uline">Hypothesis</span> is what you think will happen.</p>
                 <hr/>
                 <div className="large">I think:
                     <ButtonGroup
