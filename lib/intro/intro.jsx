@@ -26,7 +26,7 @@ module.exports = [
             title: "Hi! I'm Sir Francis Bacon",
             showBacon: true,
             body: "I was made a Knight of England for doing awesome Science. We're going to use science to figure out cool things about the world.",
-            next: "Awesome"
+            next: "Let's do science!"
         }))
     },
 
@@ -55,7 +55,7 @@ module.exports = [
                             ["bowling", "The bowling ball falls faster"],
                             ["same", "They fall the same"]]}/>
                 </div>
-                {hypothesis && <p>Great! Now we do science</p>}
+                {hypothesis && <p className="walkthrough_great">Great! Now we do science</p>}
             </div>
         }))
     },
@@ -65,14 +65,20 @@ module.exports = [
             id: 'experiment',
             style: 'black',
             title: 'The experiment',
+            pos: {
+                left: 375,
+                top: 200
+            },
             body: <p>Here we have tools to conduct our experiment. You can see
             some bowling balls and tennis balls, and those red and green
             sensors will record the time it takes for a ball to fall.</p>,
             onRender: function () {
                 props.Exercise.deployBalls(function () {
+                    /*
                     DEBUG ? props.onNext() : setTimeout(function () {
                         props.onNext()
                     }, 2000);
+                    */
                 })
             }
         }))
@@ -129,11 +135,7 @@ module.exports = [
             decide whether the data <span className="uline">support</span> or
             {' '}<span className="uline">disprove</span> your hypothesis. Then
             I will evaluate your experiment and give you feedback.</p>,
-            onRender: function () {
-                setTimeout(function () {
-                    props.onNext();
-                }, 7000)
-            }
+            next: "Ok, I'm ready",
         }))
     },
 ]
