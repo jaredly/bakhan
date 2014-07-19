@@ -107,7 +107,7 @@
 
                 var self = this
                     ,prevTreatment
-                    ,time
+                    ,time = Physics.util.ticker.now();
                     ;
 
                 // call parent init method
