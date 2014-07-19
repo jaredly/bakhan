@@ -13,7 +13,9 @@ less:
 
 docs: build less
 	rm -rf w && cp -r www w && git checkout gh-pages && rm -rf vendor images && mv w/* ./ && rm -rf w
-	echo "Run git commit -am'update docs'"
+	@echo
+	@echo "-------- YOU'RE NOT DONE --------"
+	@echo "Run git commit -am'update docs'"
 
 .PHONY: less serve watch build
 
