@@ -37,15 +37,18 @@ var Step = React.createClass({
             "walkthrough--black": this.props.style === 'black'
         })}>
             <div className="walkthrough_step">
-                <div className="walkthrough_title">{this.props.title}</div>
+                {this.props.title &&
+                    <div className="walkthrough_title">{this.props.title}</div>}
                 <div className="walkthrough_body">
                     {this.props.body}
                 </div>
-                {this.props.next &&
-                    <button onClick={this.props.onNext}
-                        className="walkthrough_next">
-                        {this.props.next}
-                    </button>}
+                <div className="walkthrough_buttons">
+                    {this.props.next &&
+                        <button onClick={this.props.onNext}
+                            className="walkthrough_next btn btn-default">
+                            {this.props.next}
+                        </button>}
+                </div>
             </div>
         </div>
     }

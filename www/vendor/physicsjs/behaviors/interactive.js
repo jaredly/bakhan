@@ -140,6 +140,7 @@
                             // we're trying to grab a body
 
                             if (body.treatment === 'static') {
+                                console.log('static bail');
                                 return
                             }
                             // fix the body in place

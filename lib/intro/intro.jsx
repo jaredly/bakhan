@@ -5,7 +5,7 @@ var Step = require('./step.jsx')
 
 var ButtonGroup = React.createClass({
     render: function () {
-        return <div>
+        return <div className="walkthrough_hypotheses">
             {this.props.options.map(function (item) {
                 var cls = "btn btn-default"
                 if (this.props.selected === item[0]) {
@@ -20,7 +20,7 @@ var ButtonGroup = React.createClass({
 module.exports = [
     function (props) {
         return Step(_.extend(props, {
-            title: "Hi! I'm Sir Frances Bacon",
+            title: "Hi! I'm Sir Francis Bacon",
             body: "I was made a Knight of England for doing awesome Science. We're going to use science to figure out cool things about the world.",
             next: "Awesome"
         }))
@@ -31,13 +31,14 @@ module.exports = [
         if (hypothesis) {
             setTimeout(function () {
                 props.onNext()
-            }, 500)
+            }, 2000)
         }
         return Step(_.extend(props, {
             title: "Experiment #1",
             body: <div>
                 <p>What falls faster: a tennis ball or a bowling ball?</p>
                 <p><strong>Hypothesis:</strong> What you think will happen.</p>
+                <hr/>
                 <p>I think:
                     <ButtonGroup
                         selected={hypothesis}
@@ -54,7 +55,7 @@ module.exports = [
     function (props) {
         return Step(_.extend(props, {
             style: 'black',
-            title: 'Now we experiment',
+            title: 'The experiment',
             body: <p>Here we have tools to conduct our experiment. You can see
             some bowling balls and tennis balls, and those red and green
             sensors will record the time it takes for a ball to fall.</p>,
@@ -63,7 +64,7 @@ module.exports = [
                     props.Exercise.demonstrateDrop(function () {
                         props.onNext()
                     })
-                }, 2000)
+                }, 6000)
             }
         }))
     },
