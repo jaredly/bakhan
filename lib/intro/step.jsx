@@ -59,7 +59,7 @@ var Step = React.createClass({
                 "walkthrough_step": true,
                 "walkthrough_step--fade-out": this.props.fadeOut
             }) + " walkthrough_step--" + this.props.id} style={style}>
-                {this.props.showBacon && <img className="walkthrough_sir-francis" src="/images/sir-francis-transparent2.gif"/>}
+                {this.props.showBacon && <img className="walkthrough_sir-francis" src="images/sir-francis-transparent2.gif"/>}
                 {this.props.title &&
                     <div className="walkthrough_title">{this.props.title}</div>}
                 <div className="walkthrough_body">
