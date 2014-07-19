@@ -72,7 +72,6 @@ canvas {
     display: block;
     width: 350px;
     white-space: nowrap;
-    overflow: auto;
     max-height: 690px;
 }
 
