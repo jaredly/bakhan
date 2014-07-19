@@ -25,6 +25,9 @@ canvas {
 }
 
 .playpause {
+    position: absolute;
+    top: 30px;
+    left: 30px;
     display: inline-block;
     background-color: white;
     border: 1px solid #eee;
@@ -34,6 +37,7 @@ canvas {
 
 .playpause a {
     padding-right: 5px;
+    display: inline-block;
     text-decoration: none;
 }
 .graph {
@@ -62,7 +66,6 @@ canvas {
     display: inline-block;
     vertical-align: top;
     margin: 15px;
-    height: 670px;
 }
 
 .log-book-body {
@@ -70,6 +73,7 @@ canvas {
     width: 350px;
     white-space: nowrap;
     overflow: auto;
+    max-height: 690px;
 }
 
 .log-book-header {
