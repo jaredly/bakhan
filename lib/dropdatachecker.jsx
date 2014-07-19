@@ -6,19 +6,48 @@ var DropDataChecker = React.createClass({
         return {
             thisResult: "Do an experiment to see if you can figure out which ball falls faster, and let me know when you're done!",
             prevResult: '',
+            hypothesis: 'same', // will eventually be set when they finish the walkthrough.  it can be "bowling", "tennis", or "same"
+            disproven: false,
         };
     },
 
     render: function () {
-        if (this.state.thisResult) {
+        if (this.state.disproven) {
+            var bowlingButton = <button onClick={this.bowling}>The bowling ball falls faster.</button>
+            var tennisButton = <button onClick={this.tennis}>The tennis ball falls faster.</button>
+            var sameButton = <button onClick={this.same}>Both balls fall at the same rate.</button>
+            if (this.state.hypothesis === 'bowling') {
+                bowlingButton = <div/>
+            } else if (this.state.hypothesis === 'tennis') {
+                tennisButton = <div/>
+            } else if (this.state.hypothesis === 'same') {
+                sameButton = <div/>
+            }
             return <div>
+                <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
+                <p><strong>Francis says:</strong> Okay, which result do they support?</p>
+                {bowlingButton}{tennisButton}{sameButton}
+            </div>;
+        } else if (this.state.thisResult) {
+            return <div>
+                <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
                 <p><strong>Francis says:</strong> {this.state.thisResult}</p>
-                <button onClick={this.update}>Yo Francis, my experiment is done!</button>
+                <button onClick={this.support}>The data support my hypothesis.</button>
+                <button onClick={this.disprove}>The data disprove my hypothesis.</button>
             </div>;
         } else {
             return <div>
-                <p>Your experiment looks great, and I'm convinced.</p>
+                <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
+                <p><strong>Francis says:</strong> Your experiment looks great, and I'm convinced.  Here, have some bacon.</p>
             </div>;
+        }
+    },
+
+    prettyHypothesis: function () {
+        if (this.state.hypothesis === "same") {
+            return "that both balls will fall at the same rate";
+        } else {
+            return "that the "+this.state.hypothesis+" ball will fall faster";
         }
     },
 
@@ -38,24 +67,63 @@ var DropDataChecker = React.createClass({
         console.log(this.props.logBook.data, enoughData, avgs, maxDeltas);
         if (!enoughData) {
             return "You haven't filled up your lab notebook!  Make sure you get enough data so you know your results are accurate.";
-        } else if (Math.abs(avgs["Bowling Ball"] - avgs["Tennis Ball"]) > 100) {
-            return "Those results don't look very close together!  Make sure you're dropping both balls from the same height.";
         } else if (maxDeltas["Bowling Ball"] > 300) {
             return "One of your results for the bowling ball looks pretty far off!  Try getting some more data to make sure it was a fluke.";
         } else if (maxDeltas["Tennis Ball"] > 300) {
             return "One of your results for the tennis ball looks pretty far off!  Try getting some more data to make sure it was a fluke.";
         } else if (
-                avgs["Bowling Ball"] < 700
+                (this.state.hypothesis === "same"
+                    && Math.abs(avgs["Bowling Ball"] - avgs["Tennis Ball"]) > 100)
+                || (this.state.hypothesis === "bowling"
+                    && avgs["Bowling Ball"] < avgs["Tennis Ball"] + 100)
+                || (this.state.hypothesis === "tennis"
+                    && avgs["Tennis Ball"] < avgs["Bowling Ball"] + 100)
+                ) {
+            return "Those results don't look very consistent with your hypothesis.  It's fine if your hypothesis was disproven, that's how science works!";
+        } else if (
+                this.state.hypothesis !== "same"
+                || avgs["Bowling Ball"] < 700
                 || avgs["Bowling Ball"] > 1500
                 || avgs["Bowling Ball"] < 700
                 || avgs["Bowling Ball"] > 1500) {
-            return "Those results are consistent, but they don't look quite right.  Make sure you're dropping the balls gently from above the top sensor.";
+            return "Those results are consistent, but they don't look quite right to me.  Make sure you're dropping the balls gently from the same height above the top sensor.";
         } else {
             return null;
         }
     },
 
-    update: function () {
+    support: function () {
+        this.askFrancis();
+    },
+
+    disprove: function () {
+        this.setState({
+            disproven: true,
+        });
+    },
+
+    bowling: function () {
+        this.setState({
+            disproven: false,
+            hypothesis: "bowling",
+        }, this.askFrancis);
+    },
+
+    tennis: function () {
+        this.setState({
+            disproven: false,
+            hypothesis: "tennis",
+        }, this.askFrancis);
+    },
+
+    same: function () {
+        this.setState({
+            disproven: false,
+            hypothesis: "same",
+        }, this.askFrancis);
+    },
+
+    askFrancis: function () {
         this.setState({
             thisResult: this.result(),
             prevResult: this.state.thisResult
