@@ -7,7 +7,7 @@ var DEBUG = false
 
 var ButtonGroup = React.createClass({
     render: function () {
-        return <div className="walkthrough_hypotheses">
+        return <span className={this.props.className}>
             {this.props.options.map(function (item) {
                 var cls = "btn btn-default"
                 if (this.props.selected === item[0]) {
@@ -15,7 +15,7 @@ var ButtonGroup = React.createClass({
                 }
                 return <button key={item[0]} className={cls} onClick={this.props.onSelect.bind(null, item[0])}>{item[1]}</button>;
             }.bind(this))}
-        </div>;
+        </span>;
     }
 });
 
@@ -40,7 +40,7 @@ module.exports = [
                     props.onHypothesis(props.data.hypothesis);
                     DEBUG ? props.onNext() : setTimeout(function () {
                         props.onNext()
-                    }, 2000)
+                    }, 500)
                 }
             },
             body: <div>
@@ -49,13 +49,102 @@ module.exports = [
                 <hr/>
                 <div className="large">I think:
                     <ButtonGroup
+                        className="walkthrough_hypotheses"
                         selected={hypothesis}
                         onSelect={props.setData.bind(null, 'hypothesis')}
                         options={[["tennis", "The tennis ball falls faster"],
                             ["bowling", "The bowling ball falls faster"],
                             ["same", "They fall the same"]]}/>
                 </div>
-                {hypothesis && <p className="walkthrough_great">Great! Now we do science</p>}
+                {/**hypothesis && <p className="walkthrough_great">Great! Now we do science</p>**/}
+            </div>
+        }))
+    },
+
+    function (props) {
+        var firstBall = 'tennis'
+        var secondBall = 'bowling'
+        var prover = props.data.prover
+        var hypothesis = props.data.hypothesis
+
+        if (props.hypothesis === 'bowling') {
+            firstBall = 'bowling'
+            secondBall = 'tennis'
+        }
+
+        var responses = {
+            'tennis': 'Nope. That would show that the tennis ball falls faster',
+            'bowling': 'Nope. That would show that the bowling ball falls faster',
+            'same': 'Nope. That would show that they fall the same'
+        }
+        var correct = {
+            'tennis': 'less',
+            'bowling': 'less',
+            'same': 'same'
+        }
+        var proverResponse
+        var isCorrect = prover === correct[hypothesis]
+
+        if (prover) {
+            if (isCorrect) {
+                proverResponse = "Exactly! Now let's do the experiment."
+            } else {
+                proverResponse = responses[{
+                    tennis: {
+                        more: 'bowling',
+                        same: 'same'
+                    },
+                    bowling: {
+                        more: 'tennis',
+                        same: 'same'
+                    },
+                    same: {
+                        more: 'bowling',
+                        less: 'tennis'
+                    }
+                }[hypothesis][prover]];
+            }
+        }
+
+        var futureHypothesis = {
+            tennis: 'the tennis ball will fall faster than the bowling ball',
+            bowling: 'the bowling ball will fall faster than the tennis ball',
+            same: 'the tennis ball and the bowling ball will fall the same'
+        }[hypothesis];
+
+        var currentHypothesis = {
+            tennis: 'a tennis ball falls faster than a bowling ball',
+            bowling: 'a bowling ball falls faster than a tennis ball',
+            same: 'a tennis ball falls the same as a bowling ball'
+        }[hypothesis];
+
+        return Step(_.extend(props, {
+            id: 'design-experiment',
+            title: 'Designing the Experiment',
+            onUpdate: function (prevProps) {
+                if (prover && isCorrect && prover !== prevProps.data.prover) {
+                    setTimeout(function () {
+                        props.onNext()
+                    }, 2000);
+                }
+            },
+            body: <div>
+                <p>Now we need to design an experiment to test your
+                hypothesis! It's important to be careful when designing an
+                experiment, because otherwise you could end up "proving"
+                something that's actually false.</p>
+                <p>To prove that <span className="uline">{currentHypothesis}</span>, we can measure the time that it
+                takes for each ball to fall when dropped from a specific
+                height.</p>
+                <p>Your hypothesis will be proven if the <span className="uline">time for the {firstBall} ball</span> is
+                    <ButtonGroup
+                        className="btn-group"
+                        selected={prover}
+                        onSelect={props.setData.bind(null, 'prover')}
+                        options={[['less', 'less than'], ['more', 'more than'], ['same', 'the same as']]}/>
+                    the <span className="uline">time for the {secondBall} ball</span>.
+                </p>
+                {prover && <p className="design_response">{proverResponse}</p>}
             </div>
         }))
     },
