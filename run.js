@@ -9,7 +9,6 @@ var options = {
 
 var name = window.location.search.replace(/&(\w+)=([^&]+)/g, function (res, key, val) {
     options[key] = val.replace(/\//, '')
-    console.log([].slice.call(arguments))
     return ''
 }).replace(/[^\w]/g, '') || 'Demo'
 console.log(name)

@@ -134,7 +134,7 @@
                         ;
 
                     if ( self._world ){
-                        body = self._world.findOne({ $at: new Physics.vector( pos.x, pos.y ) });
+                        body = self._world.findOne({ $at: new Physics.vector( pos.x, pos.y ), treatment: 'dynamic' });
 
                         if ( body ){
                             // we're trying to grab a body
