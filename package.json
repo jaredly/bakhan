@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/jaredly/bakhan",
   "dependencies": {
-    "matter-js": "^0.8.0"
+    "reactify": "^0.14.0"
   }
 }

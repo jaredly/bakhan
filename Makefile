@@ -1,7 +1,7 @@
 
 build:
-	browserify run.js -o www/bundle.js -d
+	browserify run.js -t reactify -o www/bundle.js -d
 
 watch:
-	watchify run.js -o www/bundle.js -d -v
+	watchify run.js -t reactify -o www/bundle.js -d -v
 
