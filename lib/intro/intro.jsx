@@ -3,6 +3,8 @@
 var PT = React.PropTypes
 var Step = require('./step.jsx')
 
+var DEBUG = false
+
 var ButtonGroup = React.createClass({
     render: function () {
         return <div className="walkthrough_hypotheses">
@@ -22,6 +24,7 @@ module.exports = [
         return Step(_.extend(props, {
             id: 'hello',
             title: "Hi! I'm Sir Francis Bacon",
+            showBacon: true,
             body: "I was made a Knight of England for doing awesome Science. We're going to use science to figure out cool things about the world.",
             next: "Awesome"
         }))
@@ -34,7 +37,8 @@ module.exports = [
             title: "Experiment #1",
             onUpdate: function (prevProps) {
                 if (this.props.data.hypothesis && !prevProps.data.hypothesis) {
-                    setTimeout(function () {
+                    props.onHypothesis(props.data.hypothesis);
+                    DEBUG ? props.onNext() : setTimeout(function () {
                         props.onNext()
                     }, 2000)
                 }
@@ -66,7 +70,9 @@ module.exports = [
             sensors will record the time it takes for a ball to fall.</p>,
             onRender: function () {
                 props.Exercise.deployBalls(function () {
-                    props.onNext()
+                    DEBUG ? props.onNext() : setTimeout(function () {
+                        props.onNext()
+                    }, 2000);
                 })
             }
         }))
@@ -84,10 +90,49 @@ module.exports = [
                 time how long it takes for it to fall to the red sensor.</p>,
             onRender: function () {
                 props.Exercise.demonstrateDrop(function () {
-                    setTimeout(function () {
-                        props.onNext()
-                    }, 1000);
+                    props.onNext()
                 })
+            }
+        }))
+    },
+
+    function (props) {
+        return Step(_.extend(props, {
+            id: 'logbook',
+            style: 'black',
+            pos: {
+                top: 100,
+                left: 500
+            },
+            arrow: <div className="arrow-to-logbook"/>,
+            body: <p>The time is then recorded over here in your log book. Fill up this log book with times for both balls and compare them.</p>,
+            onRender: function () {
+                setTimeout(function () {
+                    props.onNext();
+                }, DEBUG ? 100 : 5000);
+            }
+        }));
+    },
+
+    function (props) {
+        return Step(_.extend(props, {
+            id: 'answer',
+            style: 'black',
+            pos: {
+                top: 150,
+                left: 250
+            },
+            arrow: <div className="arrow-to-answer"/>,
+            showBacon: true,
+            title: "Now conduct the experiment to test your hypothesis!",
+            body: <p>Once you've collected enough data in your log book,
+            decide whether the data <span className="uline">support</span> or
+            {' '}<span className="uline">disprove</span> your hypothesis. Then
+            I will evaluate your experiment and give you feedback.</p>,
+            onRender: function () {
+                setTimeout(function () {
+                    props.onNext();
+                }, 7000)
             }
         }))
     },

@@ -6,10 +6,10 @@ var cx = React.addons.classSet
 var Step = React.createClass({
     propTypes: {
         title: PT.string,
-        body: PT.string,
         next: PT.string,
         onRender: PT.func,
         onFadedOut: PT.func,
+        showBacon: PT.bool,
         fadeOut: PT.bool,
     },
 
@@ -58,12 +58,14 @@ var Step = React.createClass({
             <div className={cx({
                 "walkthrough_step": true,
                 "walkthrough_step--fade-out": this.props.fadeOut
-            })} style={style}>
+            }) + " walkthrough_step--" + this.props.id} style={style}>
+                {this.props.showBacon && <img className="walkthrough_sir-francis" src="/images/sir-francis-transparent2.gif"/>}
                 {this.props.title &&
                     <div className="walkthrough_title">{this.props.title}</div>}
                 <div className="walkthrough_body">
                     {this.props.body}
                 </div>
+                {this.props.arrow || false}
                 <div className="walkthrough_buttons">
                     {this.props.next &&
                         <button onClick={this.props.onNext}

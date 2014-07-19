@@ -6,7 +6,7 @@ var DropDataChecker = React.createClass({
         return {
             thisResult: "Do an experiment to see if you can figure out which ball falls faster, and let me know when you're done!",
             prevResult: '',
-            hypothesis: 'same', // will eventually be set when they finish the walkthrough.  it can be "bowling", "tennis", or "same"
+            hypothesis: this.props.initialHypothesis, // will eventually be set when they finish the walkthrough.  it can be "bowling", "tennis", or "same"
             disproven: false,
         };
     },
