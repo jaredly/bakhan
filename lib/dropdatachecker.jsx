@@ -4,13 +4,22 @@ var DropDataChecker = React.createClass({
     // props: logBook, world
     getInitialState: function () {
         return {
-            thisResult: '',
+            thisResult: "Do an experiment to see if you can figure out which ball falls faster, and let me know when you're done!",
             prevResult: '',
         };
     },
 
     render: function () {
-        return <div>{this.state.thisResult}<a onClick={this.update}>force update</a></div>;
+        if (this.state.thisResult) {
+            return <div>
+                <p><strong>Francis says:</strong> {this.state.thisResult}</p>
+                <button onClick={this.update}>Yo Francis, my experiment is done!</button>
+            </div>;
+        } else {
+            return <div>
+                <p>Your experiment looks great, and I'm convinced.</p>
+            </div>;
+        }
     },
 
     result: function () {
