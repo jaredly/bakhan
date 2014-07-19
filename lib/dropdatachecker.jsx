@@ -12,10 +12,11 @@ var DropDataChecker = React.createClass({
     },
 
     render: function () {
+        var prettyHypothesis = <p className="checker_your-hypo"><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>;
         if (this.state.disproven) {
-            var bowlingButton = <button onClick={this.bowling}>The bowling ball falls faster.</button>
-            var tennisButton = <button onClick={this.tennis}>The tennis ball falls faster.</button>
-            var sameButton = <button onClick={this.same}>Both balls fall at the same rate.</button>
+            var bowlingButton = <button className="btn btn-default" onClick={this.bowling}>The bowling ball falls faster.</button>
+            var tennisButton = <button className="btn btn-default" onClick={this.tennis}>The tennis ball falls faster.</button>
+            var sameButton = <button className="btn btn-default" onClick={this.same}>Both balls fall at the same rate.</button>
             if (this.state.hypothesis === 'bowling') {
                 bowlingButton = <div/>
             } else if (this.state.hypothesis === 'tennis') {
@@ -23,25 +24,31 @@ var DropDataChecker = React.createClass({
             } else if (this.state.hypothesis === 'same') {
                 sameButton = <div/>
             }
-            return <div>
-                <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
+            return <div className="checker">
+                {prettyHypothesis}
                 <img src="/images/sir-francis.jpeg" className="checker_francis"/>
-                <p>Okay, which result do they support?</p>
-                {bowlingButton}{tennisButton}{sameButton}
+                <div className="checker_main">
+                    <p>Okay, which result do they support?</p>
+                    {bowlingButton}{tennisButton}{sameButton}
+                </div>
             </div>;
         } else if (this.state.thisResult) {
-            return <div>
-                <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
+            return <div className="checker">
+                {prettyHypothesis}
                 <img src="/images/sir-francis.jpeg" className="checker_francis"/>
-                <p>{this.state.thisResult}</p>
-                <button onClick={this.support}>The data support my hypothesis.</button>
-                <button onClick={this.disprove}>The data disprove my hypothesis.</button>
+                <div className="checker_main">
+                    <p>{this.state.thisResult}</p>
+                    <button className="btn btn-default" onClick={this.support}>The data support my hypothesis.</button>
+                    <button className="btn btn-default" onClick={this.disprove}>The data disprove my hypothesis.</button>
+                </div>
             </div>;
         } else {
-            return <div>
-                <p><em>Your hypothesis was {this.prettyHypothesis()}.</em></p>
+            return <div className="checker">
+                {prettyHypothesis}
                 <img src="/images/sir-francis.jpeg" className="checker_francis"/>
-                <p>Your experiment looks great, and I'm convinced.  Here, have some bacon.</p>
+                <div className="checker_main">
+                    <p>Your experiment looks great, and I'm convinced.  Here, have some bacon.</p>
+                </div>
             </div>;
         }
     },

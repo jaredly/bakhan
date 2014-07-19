@@ -102,6 +102,7 @@ canvas {
 }
 
 .log-book-column:first-child .log-book-heading,
+.log-book-column:first-child .log-book-avg,
 .log-book-column:first-child .log-book-datum {
     border-right: none;
 }
