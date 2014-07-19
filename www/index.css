@@ -57,3 +57,44 @@ canvas {
 .data-log .stopwatch {
     display: block;
 }
+
+.log-book {
+    display: inline-block;
+    vertical-align: top;
+    margin: 15px;
+    height: 670px;
+}
+
+.log-book-body {
+    display: block;
+    width: 350px;
+    white-space: nowrap;
+    overflow: auto;
+}
+
+.log-book-header {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    background-color: #ccc;
+}
+
+.log-book-column {
+    display: inline-block;
+    vertical-align: top;
+    width: 80px;
+    border: 1px solid #ccc;
+}
+
+.log-book-heading, .log-book-datum {
+    display: block;
+    width: 78px;
+}
+
+.log-book-heading {
+    text-align: center;
+}
+
+.log-book-datum {
+    text-align: right;
+}
