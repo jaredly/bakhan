@@ -14,7 +14,8 @@ tennisImage.onload = function() {
 };
 
 imagePaths = [
-    'images/tennis_ball.png'
+    'images/tennis_ball.png',
+    'images/bowling_ball.png',
 ];
 
 images = {};
@@ -523,7 +524,8 @@ imagePaths.forEach(function(path) {
                 ctx = ctx || this.ctx;
 
                 if (styles['image']) {
-                    ctx.drawImage(tennisImage, x - r, y - r, x + 2*r, y + 2*r);
+                    ctx.drawImage(images[styles['image']], x - r, y - r,
+                            x + 2*r, y + 2*r);
                 } else {
                     ctx.beginPath();
                     this.setStyle( styles, ctx );
