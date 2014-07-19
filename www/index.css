@@ -1,3 +1,12 @@
+.background {
+    position: absolute;
+    z-index: -1;
+    width: 910px;
+    height: 710px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
 canvas {
     border: 5px solid #ccc;
     position: static !important;
