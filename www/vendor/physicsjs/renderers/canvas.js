@@ -16,6 +16,7 @@ tennisImage.onload = function() {
 imagePaths = [
     'images/tennis_ball.png',
     'images/bowling_ball.png',
+    'images/asteroid.png',
 ];
 
 images = {};
