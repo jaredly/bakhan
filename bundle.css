@@ -1,0 +1,154 @@
+@font-face {
+  font-family: "ComingSoon";
+  src: url("vendor/ComingSoon.ttf");
+}
+.walkthrough {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background-color 1s ease;
+  font-family: "ComingSoon";
+  font-size: 27px;
+}
+.walkthrough .large {
+  font-size: 34px;
+}
+.walkthrough--black {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+.walkthrough--white {
+  background-color: white;
+  color: #777;
+}
+.walkthrough--white .walkthrough_title {
+  color: black;
+}
+.walkthrough--white .uline {
+  color: black;
+}
+.walkthrough_great {
+  font-size: 35px;
+  margin-top: 15px;
+  text-align: center;
+}
+.walkthrough_hypotheses button {
+  display: block;
+  font-size: 35px;
+  margin-top: 10px;
+  padding: 10px 30px;
+  border-radius: 30px;
+}
+.walkthrough_step {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  margin-left: -250px;
+  margin-top: -200px;
+  opacity: 1;
+  transition: opacity .5s ease;
+}
+.walkthrough_step--fade-out {
+  opacity: 0;
+}
+.walkthrough_step--hello {
+  width: 1100px;
+  margin-left: -550px;
+  margin-top: -100px;
+}
+.walkthrough_step--description {
+  margin-top: -300px;
+  width: 650px;
+  margin-left: -325px;
+}
+.walkthrough_step--answer {
+  width: 600px;
+}
+.walkthrough_step--answer .walkthrough_sir-francis {
+  position: absolute;
+  top: 150px;
+  left: -200px;
+  height: 200px;
+}
+.walkthrough_step--design-experiment {
+  width: 850px;
+  margin-top: -300px;
+  margin-left: -425px;
+}
+.walkthrough_step--design-experiment button {
+  font-size: 24px;
+}
+.walkthrough_step--design-experiment .btn-group {
+  margin: 0 5px;
+}
+.design_response {
+  font-size: 35px;
+  margin-top: 20px;
+  color: black;
+}
+.walkthrough_body {
+  line-height: 2;
+}
+.walkthrough_body .uline {
+  text-decoration: underline;
+  font-weight: bold;
+}
+.walkthrough_sir-francis {
+  float: left;
+  height: 500px;
+  margin-top: -150px;
+}
+.walkthrough_title {
+  font-size: 40px;
+  font-weight: bold;
+}
+.walkthrough_buttons {
+  text-align: center;
+}
+.walkthrough_next {
+  font-size: 35px;
+  margin-top: 30px;
+  padding: 10px 30px;
+  border-radius: 30px;
+}
+.arrow-right-down {
+  background-image: url("/vendor/walkthrough/images/arrow-right-down.png");
+  width: 105px;
+  height: 56px;
+  position: absolute;
+}
+.arrow-to-logbook {
+  background-image: url("/vendor/walkthrough/images/arrow-right-down.png");
+  width: 105px;
+  height: 56px;
+  position: absolute;
+  top: 100px;
+  left: 550px;
+}
+.arrow-to-answer {
+  background-image: url("/vendor/walkthrough/images/arrow-right-down.png");
+  width: 105px;
+  height: 56px;
+  position: absolute;
+  top: 230px;
+  left: 600px;
+}
+.checker button {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.checker_francis {
+  float: left;
+  height: 100px;
+}
+.checker_your-hypo {
+  font-size: 20px;
+  padding: 0 20px;
+}
+.checker_main {
+  margin-left: 105px;
+}

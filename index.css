@@ -1,0 +1,168 @@
+.background {
+    position: absolute;
+    z-index: -1;
+    width: 910px;
+    height: 710px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+canvas {
+    border: 5px solid #ccc;
+    position: static !important;
+    margin: 15px;
+}
+
+.stopwatch {
+    display: inline-block;
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 5px;
+    margin: 5px;
+}
+
+.stopwatch span {
+    font-family: monospace;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+}
+
+.stopwatch a {
+    padding-right: 5px;
+    text-decoration: none;
+}
+
+.playpause {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: inline-block;
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 5px;
+    margin: 5px;
+}
+
+.playpause a {
+    padding-right: 5px;
+    display: inline-block;
+    text-decoration: none;
+}
+.graph {
+    position: absolute !important;
+    top: 10px;
+    left: 10px;
+    pointer-events: none;
+    border: none;
+}
+
+.data-log {
+    display: inline-block;
+    overflow-y: scroll;
+    min-width: 100px;
+    height: 700px;
+    margin: 5px;
+    vertical-align: top;
+    border: 1px solid #eee;
+}
+
+.data-log .stopwatch {
+    display: block;
+}
+
+.log-book {
+    display: block;
+    width: 350px;
+    vertical-align: top;
+    margin: 15px;
+}
+
+.log-book-body {
+    display: block;
+    width: 350px;
+    white-space: nowrap;
+    max-height: 690px;
+}
+
+.log-book-header {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #aaa;
+    padding: 5px;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.log-book-column {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.log-book-column:first-child .log-book-heading,
+.log-book-column:first-child .log-book-avg,
+.log-book-column:first-child .log-book-datum {
+    border-right: none;
+}
+
+.log-book-avg,
+.log-book-heading, .log-book-datum {
+    display: block;
+    width: 175px;
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 5px;
+}
+
+.log-book-avg {
+    text-align: center;
+    font-weight: bold;
+}
+
+.log-book-heading {
+    text-align: center;
+}
+
+.log-book-datum {
+    text-align: right;
+}
+
+#navvy-nav {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    margin: 1px 10px;
+    font-size: 12px;
+}
+
+#navvy-nav li {
+    list-style-type: none;
+    display: inline;
+}
+
+#navvy-nav li + li::before {
+    color: #ccc;
+    content: " | ";
+}
+
+#navvy-nav a {
+    color: #777;
+    font-weight: 200;
+    text-decoration: none;
+}
+
+.side-bar {
+    display: inline-block;
+    vertical-align: top;
+    max-height: 700px;
+    max-width: 350px;
+}
+
+.drop-data-checker {
+    width: 350px;
+    margin: 15px;
+    display: block;
+    text-align: center;
+}
