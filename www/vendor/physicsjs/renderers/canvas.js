@@ -6,6 +6,28 @@
  * Copyright (c) 2014 Jasper Palfree <jasper@wellcaffeinated.net>
  * Licensed MIT
  */
+var imagesInvalid = false;
+var tennisImage = new Image();
+tennisImage.src = 'images/tennis_ball.png';
+tennisImage.onload = function() {
+    imagesInvalid = true;
+};
+
+imagePaths = [
+    'images/tennis_ball.png'
+];
+
+images = {};
+
+imagePaths.forEach(function(path) {
+    var image = new Image();
+    image.src = path;
+    image.onload = function() {
+        imagesInvalid = true;
+    }
+    images[path] = image;
+});
+
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(['physicsjs'], factory);
@@ -396,11 +418,16 @@
     
                         body = stack[ i ];
                         if ( !body.hidden ){
-                            view = body.view || ( body.view = self.createView(body.geometry, body.styles || styles[ body.geometry.name ]) );
+                            if (imagesInvalid || !body.view) {
+                                body.view = self.createView(
+                                    body.geometry,
+                                    body.styles || styles[ body.geometry.name ]);
+                            }
+                            view = body.view;
                             self.drawBody( body, body.view, layer.ctx, offset );
                         }
                     }
-    
+
                     if ( scale !== 1 ){
                         layer.ctx.restore();
                     }
@@ -493,15 +520,18 @@
              * Draw a circle to specified canvas context.
              **/
             drawCircle: function(x, y, r, styles, ctx){
-    
                 ctx = ctx || this.ctx;
-    
-                ctx.beginPath();
-                this.setStyle( styles, ctx );
-                ctx.arc(x, y, r, 0, Pi2, false);
-                ctx.closePath();
-                ctx.stroke();
-                ctx.fill();
+
+                if (styles['image']) {
+                    ctx.drawImage(tennisImage, x - r, y - r, x + 2*r, y + 2*r);
+                } else {
+                    ctx.beginPath();
+                    this.setStyle( styles, ctx );
+                    ctx.arc(x, y, r, 0, Pi2, false);
+                    ctx.closePath();
+                    ctx.stroke();
+                    ctx.fill();
+                }
             },
     
             /**
@@ -519,7 +549,7 @@
                     ,y = vert.y
                     ,l = verts.length
                     ;
-    
+
                 ctx = ctx || this.ctx;
                 ctx.beginPath();
                 this.setStyle( styles, ctx );
@@ -634,25 +664,20 @@
                 // clear
                 hiddenCanvas.width = 2 * hw + 2 + (2 * styles.lineWidth|0);
                 hiddenCanvas.height = 2 * hh + 2 + (2 * styles.lineWidth|0);
-    
+
                 hiddenCtx.save();
                 hiddenCtx.translate(x, y);
     
                 if (name === 'circle'){
-    
                     this.drawCircle(0, 0, geometry.radius, styles, hiddenCtx);
-    
                 } else if (name === 'convex-polygon'){
-    
                     this.drawPolygon(geometry.vertices, styles, hiddenCtx);
-    
                 } else if (name === 'rectangle'){
-    
                     this.drawRect(0, 0, geometry.width, geometry.height, styles, hiddenCtx);
                 }
     
                 if (styles.angleIndicator){
-    
+
                     hiddenCtx.beginPath();
                     this.setStyle( styles.angleIndicator, hiddenCtx );
                     hiddenCtx.moveTo(0, 0);
@@ -660,7 +685,7 @@
                     hiddenCtx.closePath();
                     hiddenCtx.stroke();
                 }
-    
+
                 hiddenCtx.restore();
     
                 view = new Image( hiddenCanvas.width, hiddenCanvas.height );
@@ -734,12 +759,12 @@
                 }
     
                 this._interpolateTime = meta.interpolateTime;
-    
+
                 for ( var id in this._layers ){
-    
                     this._layers[ id ].render();
                 }
-    
+
+                imagesInvalid = false;
                 return this;
             }
         };
