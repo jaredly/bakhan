@@ -89,20 +89,35 @@ canvas {
     display: inline-block;
     text-align: center;
     width: 100%;
-    background-color: #ccc;
+    border: 1px solid #aaa;
+    padding: 5px;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .log-book-column {
     display: inline-block;
     vertical-align: top;
-    width: 80px;
 }
 
+.log-book-column:first-child .log-book-heading,
+.log-book-column:first-child .log-book-datum {
+    border-right: none;
+}
+
+.log-book-avg,
 .log-book-heading, .log-book-datum {
     display: block;
-    width: 78px;
+    width: 175px;
     border: 1px solid #ccc;
     border-top: none;
+    padding: 5px;
+}
+
+.log-book-avg {
+    text-align: center;
+    font-weight: bold;
 }
 
 .log-book-heading {
