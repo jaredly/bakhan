@@ -74,11 +74,9 @@ module.exports = [
             sensors will record the time it takes for a ball to fall.</p>,
             onRender: function () {
                 props.Exercise.deployBalls(function () {
-                    /*
                     DEBUG ? props.onNext() : setTimeout(function () {
                         props.onNext()
                     }, 2000);
-                    */
                 })
             }
         }))
