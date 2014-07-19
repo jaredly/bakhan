@@ -86,12 +86,13 @@ canvas {
     display: inline-block;
     vertical-align: top;
     width: 80px;
-    border: 1px solid #ccc;
 }
 
 .log-book-heading, .log-book-datum {
     display: block;
     width: 78px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
 
 .log-book-heading {
