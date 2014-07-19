@@ -82,10 +82,10 @@ var DropDataChecker = React.createClass({
             return "Those results don't look very consistent with your hypothesis.  It's fine if your hypothesis was disproven, that's how science works!";
         } else if (
                 this.state.hypothesis !== "same"
-                || avgs["Bowling Ball"] < 900
-                || avgs["Bowling Ball"] > 2000
-                || avgs["Tennis Ball"] < 900
-                || avgs["Tennis Ball"] > 2000) {
+                || avgs["Bowling Ball"] < 800
+                || avgs["Bowling Ball"] > 1500
+                || avgs["Tennis Ball"] < 800
+                || avgs["Tennis Ball"] > 1500)
             return "Those results are consistent, but they don't look quite right to me.  Make sure you're dropping the balls gently from the same height above the top sensor.";
         } else {
             return null;
