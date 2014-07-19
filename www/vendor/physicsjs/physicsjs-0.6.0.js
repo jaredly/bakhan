@@ -1394,6 +1394,21 @@ Physics.util = {};
     };
 
     /**
+     * Physics.vector#clampNorm( maxNorm ) -> this
+     * - maxNorm (Number): The maximum vector
+     * 
+     * Constrain vector components to max length.
+     **/
+    Vector.prototype.clampNorm = function( maxNorm ){
+        if (this.normSq() > maxNorm * maxNorm) {
+            this.normalize().mult(maxNorm)
+            this.recalc = true;
+        }
+        return this
+    };
+
+
+    /**
      * Physics.vector#toString() -> String
      * 
      * Get a formatted string of this vector's coordinates.
