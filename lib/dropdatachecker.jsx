@@ -26,7 +26,7 @@ var DropDataChecker = React.createClass({
             }
             return <div className="checker">
                 {prettyHypothesis}
-                <img src="/images/sir-francis.jpeg" className="checker_francis"/>
+                <img src="images/sir-francis.jpeg" className="checker_francis"/>
                 <div className="checker_main">
                     <p>Okay, which result do they support?</p>
                     {bowlingButton}{tennisButton}{sameButton}
@@ -35,7 +35,7 @@ var DropDataChecker = React.createClass({
         } else if (this.state.thisResult) {
             return <div className="checker">
                 {prettyHypothesis}
-                <img src="/images/sir-francis.jpeg" className="checker_francis"/>
+                <img src="images/sir-francis.jpeg" className="checker_francis"/>
                 <div className="checker_main">
                     <p>{this.state.thisResult}</p>
                     <button className="btn btn-default" onClick={this.support}>The data support my hypothesis.</button>
@@ -45,7 +45,7 @@ var DropDataChecker = React.createClass({
         } else {
             return <div className="checker">
                 {prettyHypothesis}
-                <img src="/images/sir-francis.jpeg" className="checker_francis"/>
+                <img src="images/sir-francis.jpeg" className="checker_francis"/>
                 <div className="checker_main">
                     <p>Your experiment looks great, and I'm convinced.  Here, have some bacon.</p>
                 </div>
