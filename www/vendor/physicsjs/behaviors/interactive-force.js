@@ -255,6 +255,7 @@
                     // var closeThreshold = 30
                     // var likeDist = delta.norm() > closeThreshold ? delta.norm() : 0
                     var likeDist = delta.normSq()
+                    likeDist = Math.min(20000, likeDist)
                     force.normalize().mult(likeDist / dt / 90)
                     self.body.applyForce(force)
                     // damping
