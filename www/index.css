@@ -69,6 +69,17 @@ canvas {
     left: 80px;
 }
 
+.hill-slider input {
+    width: 150px;
+}
+
+.hill-slider span {
+    font-family: monospace;
+    padding-right: 5px;
+    padding-left: 10px;
+    vertical-align: top;
+}
+
 .graph {
     position: absolute !important;
     top: 10px;
@@ -189,6 +200,17 @@ canvas {
     margin: 15px;
     display: block;
     text-align: center;
+}
+
+.hills-data-checker {
+    width: 350px;
+    margin: 15px;
+    display: block;
+    text-align: center;
+}
+
+.hills-data-checker .btn {
+    white-space: normal;
 }
 
 .newton1-data-checker {
