@@ -15,6 +15,7 @@ canvas {
 
 #under-canvas {
     position: absolute;
+    pointer-events: none;
 }
 
 .stopwatch {
