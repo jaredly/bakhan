@@ -10,6 +10,7 @@ var DataChecker = React.createClass({
             text: React.PropTypes.string.isRequired, // "Your hypothesis was <text>."
         })).isRequired,
         result: React.PropTypes.func.isRequired, // takes in the current state and returns an error string for francis to say, or null if there are no problems with the experiment.
+        nextURL: React.PropTypes.string, // the url of the next thing.
     },
 
     getInitialState: function () {
@@ -68,11 +69,17 @@ var DataChecker = React.createClass({
                 </div>
             </div>;
         } else {
+            if (this.props.nextURL) {
+                var continuer = <a className="btn btn-default" href={this.props.nextURL}>Thanks!  What's next?</a>;
+            } else {
+                var continuer = <span/>;
+            }
             return <div className="checker">
                 {this.renderHypothesis()}
                 <img src="images/sir-francis.jpeg" className="checker_francis"/>
                 <div className="checker_main">
                     <p>Your experiment looks great, and I'm convinced.  Here, have some bacon.</p>
+                    {continuer};
                 </div>
             </div>;
         }
