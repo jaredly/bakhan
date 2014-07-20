@@ -67,7 +67,7 @@ module.exports = [
         var prover = props.data.prover
         var hypothesis = props.data.hypothesis
 
-        if (props.hypothesis === 'bowling') {
+        if (hypothesis === 'bowling') {
             firstBall = 'bowling'
             secondBall = 'tennis'
         }
