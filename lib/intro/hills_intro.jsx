@@ -88,8 +88,8 @@ var steps = [
             'same': 'Nope. That would show that the ball comes out at the same speed',
         }
         var correct = {
-            'faster': 'more',
-            'slower': 'less',
+            'faster': 'less',
+            'slower': 'more',
             'same': 'same'
         }
         var proverResponse
@@ -121,13 +121,14 @@ var steps = [
             },
             body: <div>
                 <p>To prove that the ball comes out <span className="uline">{wordyHypothesis}</span>, we can measure the speed after it goes down a ramp and then over a hill of a given height.</p>
-                <p>Your hypothesis will be proven if when we roll a ball down a ramp, then over a hill, the <span className="uline">speed of the ball after rolling over a larger hill</span> is
+                <p>Since we can't measure speed directly, we'll measure the time it takes for the ball to travel a short fixed distance.</p>
+                <p>Your hypothesis will be proven if when we roll a ball down a ramp, then over a larger hill, the <span className="uline">time it takes</span> for the ball to go a fixed distance is
                     <ButtonGroup
                         className="btn-group"
                         selected={prover}
                         onSelect={props.setData.bind(null, 'prover')}
                         options={[['less', 'less than'], ['more', 'more than'], ['same', 'the same as']]}/>
-                    the <span className="uline">speed of the ball after rolling over a smaller hill</span>.
+                    the time it takes for the ball to go the same distance if it went over a smaller hill.
                 </p>
                 {prover && <p className="design_response">{proverResponse}</p>}
             </div>
@@ -144,7 +145,7 @@ var steps = [
                 top: 200
             },
             body: <p>Here we have tools to conduct our experiment.
-                     The red and green sensors will record the time it takes for the ball to pass through a short fixed distance after going over the hill.</p>,
+                     The red and green sensors will record the time it takes for the ball to go a short fixed distance after going over the hill.</p>,
             onRender: function () {
                 props.Exercise.dropObjects(function () {
                     DEBUG ? props.onNext() : setTimeout(function () {
