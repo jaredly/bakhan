@@ -154,34 +154,15 @@ var steps = [
 
     function (props) {
         return Step(_.extend(props, {
-            id: 'experiment',
-            style: 'black',
-            title: 'The experiment',
-            pos: {
-                left: 375,
-                top: 200
-            },
-            body: <p>Here we have tools to conduct our experiment. You can see
-            some bowling balls and tennis balls, and those red and green
-            sensors will record the time it takes for a ball to fall.</p>,
-            onRender: function () {
-                setTimeout(function () {
-                    props.onNext()
-                }, 2000);
-            }
-        }))
-    },
-
-    function (props) {
-        return Step(_.extend(props, {
             id: 'drop',
             style: 'black',
             pos: {
                 top: 200,
                 left: 200
             },
-            body: <p>If we drop a ball here above the green sensor, we can
-                time how long it takes for it to fall to the red sensor.</p>,
+            body: <p>We can test out this hypothesis by throwing an asteroid
+                     through the green sensors, which are evenly-spaced. Try
+                     throwing at different speeds!</p>,
             onRender: function () {
                 props.Exercise.demonstrateSample(function () {
                     props.onNext()
@@ -198,8 +179,8 @@ var steps = [
                 top: 100,
                 left: 500
             },
-            arrow: <div className="arrow-to-logbook"/>,
-            body: <p>The time is then recorded over here in your log book. Fill up this log book with times for both balls and compare them.</p>,
+            arrow: <div className="arrow-to-logbook-newton1"/>,
+            body: <p>Notice that both times show up in the log book.</p>,
             onRender: function () {
                 setTimeout(function () {
                     props.onNext();
