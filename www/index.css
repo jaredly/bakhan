@@ -103,6 +103,8 @@ canvas {
     width: 350px;
     white-space: nowrap;
     max-height: 690px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .log-book-header {
@@ -124,7 +126,7 @@ canvas {
 .log-book-column:first-child .log-book-heading,
 .log-book-column:first-child .log-book-avg,
 .log-book-column:first-child .log-book-datum {
-    border-right: none;
+    border-left: 1px solid #ccc;
 }
 
 .log-book-avg,
@@ -132,6 +134,7 @@ canvas {
     display: block;
     width: 175px;
     border: 1px solid #ccc;
+    border-left: none;
     border-top: none;
     padding: 5px;
 }
