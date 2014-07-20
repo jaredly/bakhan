@@ -6,9 +6,9 @@ var Step = require('./step.jsx')
 
 var DEBUG = false
 
-module.exports = Newton1Intro;
+module.exports = HillsIntro;
 
-function Newton1Intro(Exercise, gotHypothesis) {
+function HillsIntro(Exercise, gotHypothesis) {
     var node = document.createElement('div')
     document.body.appendChild(node)
     React.renderComponent(Walkthrough({
@@ -41,24 +41,10 @@ var steps = [
     function (props) {
         return Step(_.extend(props, {
             id: 'hello',
-            title: "Ready for more Science?",
+            title: "Ready for even more Science?",
             showBacon: true,
-            body: "Let's get out of the lab. For this next experiment, I know just the place!",
-            next: "Let's go!"
-        }))
-    },
-
-    function (props) {
-        return Step(_.extend(props, {
-            id: 'space',
-            style: 'black',
-            title: "Space!",
-            body: "The rules of science work everywhere, so discoveries we make " +
-                "in space will also apply here on Earth. An important skill when " +
-                "designing an experiment is avoiding things that could " +
-                "interfere with the results. In space, we don't need " +
-                "to worry about gravity or wind.",
-            next: "Cool!"
+            body: "I have one more experiment for you.",
+            next: "Let's do it!"
         }))
     },
 
@@ -66,8 +52,7 @@ var steps = [
         var hypothesis = props.data.hypothesis
         return Step(_.extend(props, {
             id: 'description',
-            style: 'black',
-            title: "Experiment #2",
+            title: "Experiment #3",
             onUpdate: function (prevProps) {
                 if (this.props.data.hypothesis && !prevProps.data.hypothesis) {
                     props.onHypothesis(props.data.hypothesis);
@@ -77,16 +62,16 @@ var steps = [
                 }
             },
             body: <div>
-                <p>What happens to a moving object if you leave it alone?</p>
+                <p>If a ball rolls down a ramp, then over a hill, does the speed the ball goes afterwards depend on the height of the hill?</p>
                 <hr/>
                 <div className="large">I think:
                     <ButtonGroup
                         className="walkthrough_hypotheses"
                         selected={hypothesis}
                         onSelect={props.setData.bind(null, 'hypothesis')}
-                        options={[["faster", "It speeds up"],
-                            ["slower", "It slows down"],
-                            ["same", "It stays at the same speed forever"]]}/>
+                        options={[["faster", "It will come out going faster if the hill is bigger"],
+                            ["slower", "It will come out going slower if the hill is bigger"],
+                            ["same", "It will go the same speed, no matter the size of the hill"]]}/>
                 </div>
                 {/**hypothesis && <p className="walkthrough_great">Great! Now we do science</p>**/}
             </div>
@@ -98,9 +83,9 @@ var steps = [
         var hypothesis = props.data.hypothesis
 
         var responses = {
-            'more': 'Nope. That would show that the object gets faster.',
-            'less': 'Nope. That would show that the object gets slower.',
-            'same': 'Nope. That would show that the object stays the same speed.'
+            'more': 'Nope. That would show that the ball comes out faster',
+            'less': 'Nope. That would show that the ball comes out slower',
+            'same': 'Nope. That would show that the ball comes out at the same speed',
         }
         var correct = {
             'faster': 'more',
@@ -118,15 +103,14 @@ var steps = [
             }
         }
 
-        var currentHypothesis = {
-            faster: 'moving objects get faster over time',
-            slower: 'moving objects get slower over time',
-            same: "moving objects don't change in speed over time"
+        var wordyHypothesis = {
+            faster: 'faster if the hill is bigger',
+            slower: 'slower if the hill is bigger',
+            same: 'the same speed no matter what',
         }[hypothesis];
 
         return Step(_.extend(props, {
             id: 'design-experiment',
-            style: 'black',
             title: 'Designing the Experiment',
             onUpdate: function (prevProps) {
                 if (prover && isCorrect && prover !== prevProps.data.prover) {
@@ -136,19 +120,38 @@ var steps = [
                 }
             },
             body: <div>
-                <p>To prove that <span className="uline">{currentHypothesis}</span>,
-                we can measure the time that it takes for an asteroid to move 100 meters,
-                then measure the time to move another 100 meters.</p>
-                <p>Your hypothesis will be proven if the <span className="uline">time to travel the first 100m</span> is
+                <p>To prove that the ball comes out <span className="uline">{wordyHypothesis}</span>, we can measure the speed after it goes down a ramp and then over a hill of a given height.</p>
+                <p>Your hypothesis will be proven if when we roll a ball down a ramp, then over a hill, the <span className="uline">speed of the ball after rolling over a larger hill</span> is
                     <ButtonGroup
                         className="btn-group"
                         selected={prover}
                         onSelect={props.setData.bind(null, 'prover')}
                         options={[['less', 'less than'], ['more', 'more than'], ['same', 'the same as']]}/>
-                    the <span className="uline">time to travel the next 100m</span>.
+                    the <span className="uline">speed of the ball after rolling over a smaller hill</span>.
                 </p>
-                {prover && <p className="design_response_white">{proverResponse}</p>}
+                {prover && <p className="design_response">{proverResponse}</p>}
             </div>
+        }))
+    },
+
+    function (props) {
+        return Step(_.extend(props, {
+            id: 'experiment',
+            style: 'black',
+            title: 'The experiment',
+            pos: {
+                left: 375,
+                top: 200
+            },
+            body: <p>Here we have tools to conduct our experiment.
+                     The red and green sensors will record the time it takes for the ball to pass through a short fixed distance after going over the hill.</p>,
+            onRender: function () {
+                props.Exercise.dropObjects(function () {
+                    DEBUG ? props.onNext() : setTimeout(function () {
+                        props.onNext()
+                    }, 2000);
+                })
+            }
         }))
     },
 
@@ -160,11 +163,9 @@ var steps = [
                 top: 200,
                 left: 200
             },
-            body: <p>We can test out this hypothesis by throwing an asteroid
-                     through the green sensors, which are evenly-spaced. Try
-                     throwing at different speeds!</p>,
+            body: <p>We can test out this hypothesis by rolling a ball starting at the top of the ramp.</p>,
             onRender: function () {
-                props.Exercise.demonstrateSample(function () {
+                props.Exercise.demonstrateDrop(function () {
                     props.onNext()
                 })
             }
@@ -179,8 +180,8 @@ var steps = [
                 top: 100,
                 left: 500
             },
-            arrow: <div className="arrow-to-logbook-newton1"/>,
-            body: <p>Notice that both times show up in the log book.</p>,
+            arrow: <div className="arrow-to-hill-slider"/>,
+            body: <p>We can change the height of the hill here.</p>,
             onRender: function () {
                 setTimeout(function () {
                     props.onNext();
