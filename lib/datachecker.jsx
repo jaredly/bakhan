@@ -5,7 +5,7 @@ var DataChecker = React.createClass({
         logBook: React.PropTypes.object.isRequired,
         initialText: React.PropTypes.string.isRequired,
         initialHypothesis: React.PropTypes.string.isRequired,
-        possibleHypotheses: React.PropTypes.objectOf(React.PropTypes.shape({
+        possibleHypotheses: React.PropTypes.arrayOf(React.PropTypes.shape({
             name: React.PropTypes.string.isRequired,
             buttonText: React.PropTypes.string.isRequired, // the text on the button to change your hypothesis
             text: React.PropTypes.string.isRequired, // "Your hypothesis was <text>."
@@ -23,8 +23,9 @@ var DataChecker = React.createClass({
     },
 
     renderHypothesis: function () {
+        var hypText = _.findWhere(this.props.possibleHypotheses, {name: this.state.hypothesis}).text
         return <p className="checker_your-hypo">
-            <em>Your hypothesis was {this.props.possibleHypotheses[this.state.hypothesis].text}.</em>
+            <em>Your hypothesis was {hypText}.</em>
         </p>
     }
 
