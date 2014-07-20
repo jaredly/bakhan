@@ -2,7 +2,6 @@
 
 var DataChecker = React.createClass({
     propTypes: {
-        logBook: React.PropTypes.object.isRequired,
         initialText: React.PropTypes.string.isRequired,
         initialHypothesis: React.PropTypes.string.isRequired,
         possibleHypotheses: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -10,7 +9,7 @@ var DataChecker = React.createClass({
             buttonText: React.PropTypes.string.isRequired, // the text on the button to change your hypothesis
             text: React.PropTypes.string.isRequired, // "Your hypothesis was <text>."
         })).isRequired,
-        result: React.PropTypes.func.isRequired, // takes in a logbook, and returns an error string for francis to say, or null if there are no problems with the experiment.
+        result: React.PropTypes.func.isRequired, // takes in the current state and returns an error string for francis to say, or null if there are no problems with the experiment.
     },
 
     getInitialState: function () {
@@ -89,7 +88,7 @@ var DataChecker = React.createClass({
 
     askFrancis: function () {
         this.setState({
-            thisResult: this.result(),
+            thisResult: this.props.result(this.state),
             prevResult: this.state.thisResult
         });
     }
