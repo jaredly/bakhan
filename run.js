@@ -15,11 +15,3 @@ console.log(name)
 
 window.BKA = new bakhan[name](node, options);
 window.BKA.run();
-
-setInterval(function() {
-    var canvas = $('canvas')[0]
-    var fn = function(x) {
-        return 20 * Math.sin(x / 20) + 60 * Math.sin(x / 53) + 400
-    }
-    bakhan.CaveDraw(canvas, fn)
-}, 500)
