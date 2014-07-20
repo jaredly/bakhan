@@ -60,6 +60,21 @@
   margin-left: -550px;
   margin-top: -100px;
 }
+.walkthrough_step--congrats {
+  width: 1100px;
+  margin-left: -550px;
+  margin-top: -100px;
+}
+.walkthrough_step--next {
+  width: 1100px;
+  margin-left: -550px;
+  margin-top: -100px;
+}
+.walkthrough_step--space {
+  width: 1100px;
+  margin-left: -550px;
+  margin-top: -100px;
+}
 .walkthrough_step--description {
   margin-top: -300px;
   width: 650px;
@@ -89,6 +104,11 @@
   font-size: 35px;
   margin-top: 20px;
   color: black;
+}
+.design_response_white {
+  font-size: 35px;
+  margin-top: 20px;
+  color: white;
 }
 .walkthrough_body {
   line-height: 2;
@@ -121,6 +141,12 @@
   height: 56px;
   position: absolute;
 }
+.arrow-left {
+  background-image: url("vendor/walkthrough/images/arrow-left.png");
+  width: 105px;
+  height: 56px;
+  position: absolute;
+}
 .arrow-to-logbook {
   background-image: url("vendor/walkthrough/images/arrow-right-down.png");
   width: 105px;
@@ -128,6 +154,22 @@
   position: absolute;
   top: 100px;
   left: 550px;
+}
+.arrow-to-logbook-newton1 {
+  background-image: url("vendor/walkthrough/images/arrow-right-down.png");
+  width: 105px;
+  height: 56px;
+  position: absolute;
+  top: 100px;
+  left: 400px;
+}
+.arrow-to-hill-slider {
+  background-image: url("vendor/walkthrough/images/arrow-left.png");
+  width: 105px;
+  height: 56px;
+  position: absolute;
+  top: -50px;
+  left: -150px;
 }
 .arrow-to-answer {
   background-image: url("vendor/walkthrough/images/arrow-right-down.png");
@@ -151,4 +193,24 @@
 }
 .checker_main {
   margin-left: 105px;
+}
+.new-asteroid-button {
+  position: absolute;
+  left: 35px;
+  top: 80px;
+  width: 160px;
+  height: 50px;
+  border: none;
+  border-radius: 7px;
+  text-align: left;
+  background: #333333 url("images/asteroid.png") 10px 10px no-repeat;
+  background-size: 40px 40px;
+  background-position: 10px 5px;
+  padding-left: 60px;
+  color: #eee;
+  border: 1px solid #444;
+  font-weight: 200;
+}
+.new-asteroid-button:focus {
+  outline: 0 !important;
 }

@@ -38,22 +38,49 @@ canvas {
     text-decoration: none;
 }
 
-.playpause {
+.playpause, .hill-slider {
     position: absolute;
     top: 30px;
-    left: 30px;
     display: inline-block;
+    text-align: center;
     background-color: white;
     border: 1px solid #eee;
     padding: 5px;
     margin: 5px;
 }
 
-.playpause a {
+.playpause a, .hill-slider input {
     padding-right: 5px;
+    min-height: 21px;
     display: inline-block;
-    text-decoration: none;
 }
+
+.playpause {
+    min-width: 40px;
+    left: 30px;
+}
+
+.playpause a {
+    text-decoration: none;
+    width: 100%;
+}
+
+.hill-slider {
+    left: 80px;
+}
+
+.hill-slider input {
+    width: 150px;
+    margin-left: 5px;
+}
+
+.hill-slider span {
+    font-family: monospace;
+    padding-right: 5px;
+    padding-left: 10px;
+    vertical-align: top;
+}
+
 .graph {
     position: absolute !important;
     top: 10px;
@@ -88,6 +115,8 @@ canvas {
     width: 350px;
     white-space: nowrap;
     max-height: 690px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .log-book-header {
@@ -109,7 +138,7 @@ canvas {
 .log-book-column:first-child .log-book-heading,
 .log-book-column:first-child .log-book-avg,
 .log-book-column:first-child .log-book-datum {
-    border-right: none;
+    border-left: 1px solid #ccc;
 }
 
 .log-book-avg,
@@ -117,6 +146,7 @@ canvas {
     display: block;
     width: 175px;
     border: 1px solid #ccc;
+    border-left: none;
     border-top: none;
     padding: 5px;
 }
@@ -140,6 +170,7 @@ canvas {
     bottom: 0px;
     margin: 1px 10px;
     font-size: 12px;
+    z-index: 1000;
 }
 
 #navvy-nav li {
@@ -169,5 +200,31 @@ canvas {
     width: 350px;
     margin: 15px;
     display: block;
+    text-align: center;
+}
+
+.hills-data-checker {
+    width: 350px;
+    margin: 15px;
+    display: block;
+    text-align: center;
+}
+
+.hills-data-checker .btn {
+    white-space: normal;
+}
+
+.newton1-data-checker {
+    width: 350px;
+    margin: 15px;
+    display: block;
+    text-align: center;
+}
+
+.bacon-badge {
+    text-align: center;
+}
+
+.bacon-badge-container {
     text-align: center;
 }
