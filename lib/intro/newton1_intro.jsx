@@ -180,11 +180,9 @@ var steps = [
             some bowling balls and tennis balls, and those red and green
             sensors will record the time it takes for a ball to fall.</p>,
             onRender: function () {
-                props.Exercise.deployBalls(function () {
-                    DEBUG ? props.onNext() : setTimeout(function () {
-                        props.onNext()
-                    }, 2000);
-                })
+                setTimeout(function () {
+                    props.onNext()
+                }, 2000);
             }
         }))
     },
@@ -200,7 +198,7 @@ var steps = [
             body: <p>If we drop a ball here above the green sensor, we can
                 time how long it takes for it to fall to the red sensor.</p>,
             onRender: function () {
-                props.Exercise.demonstrateDrop(function () {
+                props.Exercise.demonstrateSample(function () {
                     props.onNext()
                 })
             }
