@@ -1,5 +1,5 @@
 
-build:
+build: less
 	browserify run.js -t reactify -o www/bundle.js -d
 
 watch:
