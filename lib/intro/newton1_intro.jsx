@@ -1,9 +1,27 @@
 /** @jsx React.DOM */
 
+var Walkthrough = require('./walk-through.jsx')
 var PT = React.PropTypes
 var Step = require('./step.jsx')
 
 var DEBUG = false
+
+module.exports = Newton1Intro;
+
+function Newton1Intro(Exercise, gotHypothesis) {
+    var node = document.createElement('div')
+    document.body.appendChild(node)
+    React.renderComponent(Walkthrough({
+        steps: steps,
+        onHypothesis: gotHypothesis,
+        onDone: function (hypothesis) {
+            React.unmountComponentAtNode(node);
+            node.parentNode.removeChild(node);
+        },
+        Exercise: Exercise
+    }), node)
+}
+
 
 var ButtonGroup = React.createClass({
     render: function () {
@@ -19,11 +37,11 @@ var ButtonGroup = React.createClass({
     }
 });
 
-module.exports = [
+var steps = [
     function (props) {
         return Step(_.extend(props, {
             id: 'hello',
-            title: "Hi! I'm Sir Francis Bacon",
+            title: "Space!!!",
             showBacon: true,
             body: "I was made a Knight of England for doing awesome Science. We're going to use science to figure out cool things about the world.",
             next: "Let's do science!"
@@ -226,4 +244,3 @@ module.exports = [
         }))
     },
 ]
-
