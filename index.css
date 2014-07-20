@@ -13,6 +13,11 @@ canvas {
     margin: 15px;
 }
 
+#under-canvas {
+    position: absolute;
+    pointer-events: none;
+}
+
 .stopwatch {
     display: inline-block;
     background-color: white;
