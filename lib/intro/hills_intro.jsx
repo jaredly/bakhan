@@ -62,7 +62,9 @@ var steps = [
                 }
             },
             body: <div>
-                <p>If a ball rolls over a hill, does the speed of the ball change?</p>
+                <p>If a ball rolls over a hill, does the speed of the ball change?
+                </p>
+                    <img src="images/ballroll-diagram.png" width="300px"></img>
                 <hr/>
                 <div className="large">I think:
                     <ButtonGroup
