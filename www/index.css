@@ -190,3 +190,10 @@ canvas {
     display: block;
     text-align: center;
 }
+
+.newton1-data-checker {
+    width: 350px;
+    margin: 15px;
+    display: block;
+    text-align: center;
+}

@@ -24,7 +24,7 @@ var DataChecker = React.createClass({
     renderHypothesis: function () {
         var hypText = _.findWhere(this.props.possibleHypotheses, {name: this.state.hypothesis}).text
         return <p className="checker_your-hypo">
-            <em>Your hypothesis was {hypText}.</em>
+            <em>Your hypothesis is {hypText}.</em>
         </p>
     },
 
@@ -35,7 +35,7 @@ var DataChecker = React.createClass({
                     this.props.possibleHypotheses,
                     function (hyp) {
                         return (this.state.hypothesis !== hyp.name);
-                    }),
+                    }.bind(this)),
                 function (hyp) {
                     return <button key={hyp.name} className="btn btn-default" onClick={function () {this.changeHypothesis(hyp.name)}}>{hyp.buttonText}</button>;
                 });
