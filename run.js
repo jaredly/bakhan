@@ -10,8 +10,12 @@ var options = {
 var name = window.location.search.replace(/&(\w+)=([^&]+)/g, function (res, key, val) {
     options[key] = val.replace(/\//, '')
     return ''
-}).replace(/[^\w]/g, '') || 'Demo'
-console.log(name)
+}).replace(/[^\w]/g, '')
+if (!name) {
+    name = 'Drop';
+    options = {walk: 'true'};
+}
+console.log(name, options)
 
 window.BKA = new bakhan[name](node, options);
 window.BKA.run();
