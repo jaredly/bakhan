@@ -71,6 +71,7 @@ canvas {
 
 .hill-slider input {
     width: 150px;
+    margin-left: 5px;
 }
 
 .hill-slider span {
