@@ -26,7 +26,7 @@ var DataChecker = React.createClass({
         return <p className="checker_your-hypo">
             <em>Your hypothesis was {hypText}.</em>
         </p>
-    }
+    },
 
     render: function () {
         if (this.state.disproven) {
