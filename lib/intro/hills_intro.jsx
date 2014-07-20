@@ -62,16 +62,16 @@ var steps = [
                 }
             },
             body: <div>
-                <p>If a ball rolls down a ramp, then over a hill, does the speed the ball goes afterwards depend on the height of the hill?</p>
+                <p>If a ball rolls over a hill, does the speed of the ball change?</p>
                 <hr/>
                 <div className="large">I think:
                     <ButtonGroup
                         className="walkthrough_hypotheses"
                         selected={hypothesis}
                         onSelect={props.setData.bind(null, 'hypothesis')}
-                        options={[["faster", "It will come out going faster if the hill is bigger"],
-                            ["slower", "It will come out going slower if the hill is bigger"],
-                            ["same", "It will go the same speed, no matter the size of the hill"]]}/>
+                        options={[["faster", "It will come out going faster"],
+                            ["slower", "It will come out going slower"],
+                            ["same", "It will go the same speed"]]}/>
                 </div>
                 {/**hypothesis && <p className="walkthrough_great">Great! Now we do science</p>**/}
             </div>
@@ -104,9 +104,9 @@ var steps = [
         }
 
         var wordyHypothesis = {
-            faster: 'faster if the hill is bigger',
-            slower: 'slower if the hill is bigger',
-            same: 'the same speed no matter what',
+            faster: 'faster',
+            slower: 'slower',
+            same: 'the same speed',
         }[hypothesis];
 
         return Step(_.extend(props, {
