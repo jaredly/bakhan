@@ -41,10 +41,24 @@ var steps = [
     function (props) {
         return Step(_.extend(props, {
             id: 'hello',
-            title: "Space!!!",
+            title: "Ready for more science?",
             showBacon: true,
-            body: "I was made a Knight of England for doing awesome Science. We're going to use science to figure out cool things about the world.",
-            next: "Let's do science!"
+            body: "Let's get out of the lab. For this next experiment, I know just the place!",
+            next: "Let's go!"
+        }))
+    },
+
+    function (props) {
+        return Step(_.extend(props, {
+            id: 'space',
+            style: 'black',
+            title: "Space!",
+            body: "The rules of science work everywhere, so discoveries we make " +
+                "in space will also apply here on Earth. An important skill when " +
+                "designing an experiment is avoiding things that could " +
+                "interfere with the results. In space, we don't need " +
+                "to worry about gravity or wind.",
+            next: "Cool!"
         }))
     },
 
@@ -52,7 +66,8 @@ var steps = [
         var hypothesis = props.data.hypothesis
         return Step(_.extend(props, {
             id: 'description',
-            title: "Experiment #1",
+            style: 'black',
+            title: "Experiment #2",
             onUpdate: function (prevProps) {
                 if (this.props.data.hypothesis && !prevProps.data.hypothesis) {
                     props.onHypothesis(props.data.hypothesis);
@@ -62,17 +77,16 @@ var steps = [
                 }
             },
             body: <div>
-                <p>What falls faster: a tennis ball or a bowling ball?</p>
-                <p>A <span className="uline">Hypothesis</span> is what you think will happen.</p>
+                <p>What happens to a moving object if you leave it alone?</p>
                 <hr/>
                 <div className="large">I think:
                     <ButtonGroup
                         className="walkthrough_hypotheses"
                         selected={hypothesis}
                         onSelect={props.setData.bind(null, 'hypothesis')}
-                        options={[["tennis", "The tennis ball falls faster"],
-                            ["bowling", "The bowling ball falls faster"],
-                            ["same", "They fall the same"]]}/>
+                        options={[["faster", "It speeds up"],
+                            ["slower", "It slows down"],
+                            ["same", "It stays at the same speed forever"]]}/>
                 </div>
                 {/**hypothesis && <p className="walkthrough_great">Great! Now we do science</p>**/}
             </div>
@@ -80,24 +94,17 @@ var steps = [
     },
 
     function (props) {
-        var firstBall = 'tennis'
-        var secondBall = 'bowling'
         var prover = props.data.prover
         var hypothesis = props.data.hypothesis
 
-        if (hypothesis === 'bowling') {
-            firstBall = 'bowling'
-            secondBall = 'tennis'
-        }
-
         var responses = {
-            'tennis': 'Nope. That would show that the tennis ball falls faster',
-            'bowling': 'Nope. That would show that the bowling ball falls faster',
-            'same': 'Nope. That would show that they fall the same'
+            'more': 'Nope. That would show that the object gets faster.',
+            'less': 'Nope. That would show that the object gets slower.',
+            'same': 'Nope. That would show that the object stays the same speed.'
         }
         var correct = {
-            'tennis': 'less',
-            'bowling': 'less',
+            'faster': 'more',
+            'slower': 'less',
             'same': 'same'
         }
         var proverResponse
@@ -107,37 +114,19 @@ var steps = [
             if (isCorrect) {
                 proverResponse = "Exactly! Now let's do the experiment."
             } else {
-                proverResponse = responses[{
-                    tennis: {
-                        more: 'bowling',
-                        same: 'same'
-                    },
-                    bowling: {
-                        more: 'tennis',
-                        same: 'same'
-                    },
-                    same: {
-                        more: 'bowling',
-                        less: 'tennis'
-                    }
-                }[hypothesis][prover]];
+                proverResponse = responses[prover];
             }
         }
 
-        var futureHypothesis = {
-            tennis: 'the tennis ball will fall faster than the bowling ball',
-            bowling: 'the bowling ball will fall faster than the tennis ball',
-            same: 'the tennis ball and the bowling ball will fall the same'
-        }[hypothesis];
-
         var currentHypothesis = {
-            tennis: 'a tennis ball falls faster than a bowling ball',
-            bowling: 'a bowling ball falls faster than a tennis ball',
-            same: 'a tennis ball falls the same as a bowling ball'
+            faster: 'moving objects get faster over time',
+            slower: 'moving objects get slower over time',
+            same: "moving objects don't change in speed over time"
         }[hypothesis];
 
         return Step(_.extend(props, {
             id: 'design-experiment',
+            style: 'black',
             title: 'Designing the Experiment',
             onUpdate: function (prevProps) {
                 if (prover && isCorrect && prover !== prevProps.data.prover) {
@@ -147,22 +136,18 @@ var steps = [
                 }
             },
             body: <div>
-                <p>Now we need to design an experiment to test your
-                hypothesis! It's important to be careful when designing an
-                experiment, because otherwise you could end up "proving"
-                something that's actually false.</p>
-                <p>To prove that <span className="uline">{currentHypothesis}</span>, we can measure the time that it
-                takes for each ball to fall when dropped from a specific
-                height.</p>
-                <p>Your hypothesis will be proven if the <span className="uline">time for the {firstBall} ball</span> is
+                <p>To prove that <span className="uline">{currentHypothesis}</span>,
+                we can measure the time that it takes for an asteroid to move 100 meters,
+                then measure the time to move another 100 meters.</p>
+                <p>Your hypothesis will be proven if the <span className="uline">time to travel the first 100m</span> is
                     <ButtonGroup
                         className="btn-group"
                         selected={prover}
                         onSelect={props.setData.bind(null, 'prover')}
                         options={[['less', 'less than'], ['more', 'more than'], ['same', 'the same as']]}/>
-                    the <span className="uline">time for the {secondBall} ball</span>.
+                    the <span className="uline">time to travel the next 100m</span>.
                 </p>
-                {prover && <p className="design_response">{proverResponse}</p>}
+                {prover && <p className="design_response_white">{proverResponse}</p>}
             </div>
         }))
     },
