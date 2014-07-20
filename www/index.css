@@ -38,22 +38,37 @@ canvas {
     text-decoration: none;
 }
 
-.playpause {
+.playpause, .hill-slider {
     position: absolute;
     top: 30px;
-    left: 30px;
     display: inline-block;
+    text-align: center;
     background-color: white;
     border: 1px solid #eee;
     padding: 5px;
     margin: 5px;
 }
 
-.playpause a {
+.playpause a, .hill-slider input {
     padding-right: 5px;
+    min-height: 21px;
     display: inline-block;
-    text-decoration: none;
 }
+
+.playpause {
+    min-width: 40px;
+    left: 30px;
+}
+
+.playpause a {
+    text-decoration: none;
+    width: 100%;
+}
+
+.hill-slider {
+    left: 80px;
+}
+
 .graph {
     position: absolute !important;
     top: 10px;
