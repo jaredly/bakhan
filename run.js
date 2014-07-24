@@ -13,7 +13,7 @@ var name = window.location.search.replace(/&(\w+)=([^&]+)/g, function (res, key,
 }).replace(/[^\w]/g, '')
 if (!name) {
     name = 'Drop';
-    options = {walk: 'true'};
+    options.walk = 'true';
 }
 console.log(name, options)
 
