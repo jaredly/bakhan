@@ -25,7 +25,7 @@ var steps = [
             showBacon: true,
             body: <div>
                 <p>That was some awesome Science you did there!  You've finished all of my experiments. You earned the <strong>Bacon Badge</strong> for your work.</p>
-                <p className="bacon-badge-container"><img className="bacon-badge" src="/images/bacon.png"/></p>
+                <p className="bacon-badge-container"><img className="bacon-badge" src="images/bacon.png"/></p>
             </div>,
             next: "What's next?"
         }));
