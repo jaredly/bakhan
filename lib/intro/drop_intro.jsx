@@ -4,11 +4,9 @@ var Walkthrough = require('./walk-through.jsx')
 var PT = React.PropTypes
 var Step = require('./step.jsx')
 
-var DEBUG = false
-
 module.exports = DropIntro;
 
-function DropIntro(Exercise, gotHypothesis) {
+function DropIntro(Exercise, gotHypothesis, debug) {
     var node = document.createElement('div')
     document.body.appendChild(node)
     React.renderComponent(Walkthrough({
@@ -18,6 +16,7 @@ function DropIntro(Exercise, gotHypothesis) {
             React.unmountComponentAtNode(node);
             node.parentNode.removeChild(node);
         },
+        debug: debug,
         Exercise: Exercise
     }), node)
 }
@@ -56,7 +55,7 @@ var steps = [
             onUpdate: function (prevProps) {
                 if (this.props.data.hypothesis && !prevProps.data.hypothesis) {
                     props.onHypothesis(props.data.hypothesis);
-                    DEBUG ? props.onNext() : setTimeout(function () {
+                    props.debug ? props.onNext() : setTimeout(function () {
                         props.onNext()
                     }, 500)
                 }
@@ -143,7 +142,7 @@ var steps = [
                 if (prover && isCorrect && prover !== prevProps.data.prover) {
                     setTimeout(function () {
                         props.onNext()
-                    }, 2000);
+                    }, props.debug ? 500 : 2000);
                 }
             },
             body: <div>
@@ -181,7 +180,7 @@ var steps = [
             sensors will record the time it takes for a ball to fall.</p>,
             onRender: function () {
                 props.Exercise.deployBalls(function () {
-                    DEBUG ? props.onNext() : setTimeout(function () {
+                    props.debug ? props.onNext() : setTimeout(function () {
                         props.onNext()
                     }, 2000);
                 })
@@ -220,7 +219,7 @@ var steps = [
             onRender: function () {
                 setTimeout(function () {
                     props.onNext();
-                }, DEBUG ? 100 : 5000);
+                }, props.debug ? 1000 : 5000);
             }
         }));
     },

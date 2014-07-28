@@ -4,6 +4,7 @@ var WalkThrough = React.createClass({
     propTypes: {
         steps: React.PropTypes.array.isRequired,
         onDone: React.PropTypes.func,
+        debug: React.PropTypes.bool
     },
     getInitialState: function () {
         return {
@@ -42,7 +43,8 @@ var WalkThrough = React.createClass({
             setData: this.setData,
             data: this.state.data,
             fadeOut: this.state.fading !== false,
-            onFadedOut: this.onFadedOut
+            onFadedOut: this.onFadedOut,
+            debug: this.props.debug
         }
         for (var name in this.props) {
             props[name] = this.props[name]

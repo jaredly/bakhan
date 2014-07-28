@@ -4,11 +4,9 @@ var Walkthrough = require('./walk-through.jsx')
 var PT = React.PropTypes
 var Step = require('./step.jsx')
 
-var DEBUG = false
-
 module.exports = Newton1Intro;
 
-function Newton1Intro(Exercise, gotHypothesis) {
+function Newton1Intro(Exercise, gotHypothesis, debug) {
     var node = document.createElement('div')
     document.body.appendChild(node)
     React.renderComponent(Walkthrough({
@@ -18,6 +16,7 @@ function Newton1Intro(Exercise, gotHypothesis) {
             React.unmountComponentAtNode(node);
             node.parentNode.removeChild(node);
         },
+        debug: debug,
         Exercise: Exercise
     }), node)
 }
@@ -71,7 +70,7 @@ var steps = [
             onUpdate: function (prevProps) {
                 if (this.props.data.hypothesis && !prevProps.data.hypothesis) {
                     props.onHypothesis(props.data.hypothesis);
-                    DEBUG ? props.onNext() : setTimeout(function () {
+                    props.debug ? props.onNext() : setTimeout(function () {
                         props.onNext()
                     }, 500)
                 }
@@ -184,7 +183,7 @@ var steps = [
             onRender: function () {
                 setTimeout(function () {
                     props.onNext();
-                }, DEBUG ? 100 : 5000);
+                }, props.debug ? 100 : 5000);
             }
         }));
     },
